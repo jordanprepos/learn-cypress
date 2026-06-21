@@ -15,3 +15,17 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
+
+// A. Asymmetric Signature Helper (for Access Token API)
+Cypress.generateAsymetricSignature = function(clientId, time, privateKey){
+    return Cypress.task('generateB2bSignature', {
+        clientId,
+        time,
+        privateKey
+    })
+}
+
+Cypress.generateExternalId = function(){
+    
+}
+    
