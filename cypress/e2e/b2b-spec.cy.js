@@ -3,7 +3,7 @@ describe('B2B API Testing', () => {
   //generate random external id
   function generateExternalId(){
     const min = 100000000000; 
-    const max = 999999999999; 
+    const max = 999999999999;
     const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
     return randomNumber;
   }

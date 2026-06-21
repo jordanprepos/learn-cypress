@@ -25,7 +25,30 @@ Cypress.generateAsymetricSignature = function(clientId, time, privateKey){
     })
 }
 
+// B. External ID Helper
 Cypress.generateExternalId = function(){
+    const min = 100000000000; 
+    const max = 999999999999; 
+    const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+    return randomNumber;
+}
+
+// C. Timestamp Helper
+Cypress.generateTimestamp = function(){
+    const date = new Date();
+    const tzo = -date.getTimezoneOffset();
+    const dif = tzo >= 0 ? '+' : '-';
+    const pad = (num) => String(num).padStart(2, '0');
     
+    const year = date.getFullYear();
+    const month = pad(date.getMonth() + 1);
+    const day = pad(date.getDate());
+    const hours = pad(date.getHours());
+    const minutes = pad(date.getMinutes());
+    const seconds = pad(date.getSeconds());
+    const tzHours = pad(Math.floor(Math.abs(tzo) / 60));
+    const tzMinutes = pad(Math.abs(tzo) % 60);
+    
+    return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}${dif}${tzHours}:${tzMinutes}`;
 }
     
